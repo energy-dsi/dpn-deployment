@@ -16,7 +16,7 @@ on:
       - '.github/workflows/**'
 
 env:
-  WORKING_DIRECTORY: 'mesh-dpn/environment/sandbox'
+  WORKING_DIRECTORY: 'environment/sandbox'
 
 permissions:
   actions: write # This is required to read/write workflows, workflow runs and artifacts.

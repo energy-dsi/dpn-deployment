@@ -25,6 +25,16 @@ runs:
     - name: Checkout Working Directory
       uses: actions/checkout@v4
 
+
+    - name: Setup SSH Key
+      shell: bash
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        chmod 644 ~/.ssh/known_hosts
+
     - name: Terraform Init
       id: init
       run:

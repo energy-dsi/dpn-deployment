@@ -13,7 +13,6 @@ on:
       - 'environment/sandbox/dpn_deployment/**'
       - '.github/workflows/CI-MESH-DPN.yml'
       - '.github/actions/**'
-      - '.github/workflows/CI-MESH-DPN.yml'
 
 env:
   WORKING_DIRECTORY: 'environment/sandbox/dpn_deployment'

@@ -1,7 +1,7 @@
 terraform {
   backend "azurerm" {
-    resource_group_name  = "rg-dpn-tfstorage-dev-uks-001"
-    storage_account_name = "sttfstoragedpnuks001"
+    resource_group_name  = "viral-rg"
+    storage_account_name = "vptfstorageaccount001"
     container_name       = "tfstate"
     key                  = "terraform_ia_deployment.tfstate"
   }

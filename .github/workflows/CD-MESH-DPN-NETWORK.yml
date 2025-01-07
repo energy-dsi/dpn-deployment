@@ -10,13 +10,13 @@ on:
     branches:
       - main
     paths:
-      - 'mesh-dpn/environment/sandbox/**'
+      - '../../environment/networking/sandbox/**'
       - '.github/workflows/CD-MESH-DPN-NETWORK.yml'
       - '.github/actions/**'
       - '.github/workflows/**'
 
 env:
-  WORKING_DIRECTORY: 'environment/sandbox'
+  WORKING_DIRECTORY: 'environment/networking/sandbox'
 
 permissions:
   actions: write # This is required to read/write workflows, workflow runs and artifacts.

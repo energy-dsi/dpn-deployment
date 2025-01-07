@@ -1,5 +1,5 @@
-name: "Terraform Init, Validate and Plan"
-description: "Terraform Init, Validate and Plan"
+name: "Terraform Apply"
+description: "Terraform Apply"
 
 inputs:
   WORKING_DIRECTORY:
@@ -58,15 +58,9 @@ runs:
       shell: bash
       working-directory: ${{ inputs.WORKING_DIRECTORY }}
 
-    - name: Terraform Validate
-      id: validate
-      run: terraform validate
-      shell: bash
-      working-directory: ${{ inputs.WORKING_DIRECTORY }}
-
-    - name: Terraform Plan
-      id: plan
-      run: terraform plan
+    - name: Terraform Apply
+      id: apply
+      run: terraform apply -auto-approve
         -var ARM_CLIENT_ID=$ARM_CLIENT_ID
         -var ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
         -var ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID

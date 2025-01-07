@@ -28,7 +28,7 @@ permissions:
 jobs:
 
   terraform-plan-dpn:
-    name: Terraform DPN DPN Sandbox Plan
+    name: Terraform DPN Sandbox Plan
     runs-on: ubuntu-latest
     defaults:
       run:

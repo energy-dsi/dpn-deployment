@@ -25,8 +25,8 @@ permissions:
   security-events: write # This is required for the Checkov composite action to upload report to the GitHub Advanced Security tab
 
 jobs:
-  terraform-apply-dpn-network:
-    name: Terraform DPN Network Sandbox Apply
+  terraform-apply-dpn:
+    name: Terraform DPN Sandbox Apply
     runs-on: ubuntu-latest
     defaults:
       run:

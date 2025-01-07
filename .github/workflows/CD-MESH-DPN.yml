@@ -2,20 +2,20 @@
 #   GLOBAL WORKFLOW SETTINGS
 #╚════════════════════════════╝
 
-name: '🚀 CI-MESH-DPN-NETWORK'
+name: '🚀 CD-MESH-DPN'
 
 on:
+  workflow_dispatch:
   push:
-    branches-ignore:
+    branches:
       - main
-
     paths:
-      - 'environment/sandbox/networking/**'
-      - '.github/workflows/CI-MESH-DPN-NETWORK.yml'
+      - 'environment/sandbox/dpn_deployment/**'
+      - '.github/workflows/CD-MESH-DPN.yml'
       - '.github/actions/**'
 
 env:
-  WORKING_DIRECTORY: 'environment/sandbox/networking'
+  WORKING_DIRECTORY: 'environment/sandbox/dpn_deployment'
 
 permissions:
   actions: write # This is required to read/write workflows, workflow runs and artifacts.
@@ -24,18 +24,15 @@ permissions:
   pull-requests: write # This is required to read/write pull requests and related comments, assignees, labels, milestones, and merges.
   security-events: write # This is required for the Checkov composite action to upload report to the GitHub Advanced Security tab
 
-
 jobs:
-
-  terraform-plan-dpn-network:
-    name: Terraform DPN Network Sandbox Plan
+  terraform-apply-dpn-network:
+    name: Terraform DPN Network Sandbox Apply
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
         working-directory: ${{ env.WORKING_DIRECTORY }}
     steps:
-
       - name: Checkout Working Directory
         uses: actions/checkout@v4
 
@@ -45,9 +42,9 @@ jobs:
         with:
           creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.ARM_TENANT_ID }}"}'
 
-      - name: Terraform Plan
-        id: terraform-plan-sandbox
-        uses: ./.github/actions/plan
+      - name: Terraform Apply
+        id: terraform-apply-sandbox
+        uses: ./.github/actions/apply
         with:
           WORKING_DIRECTORY: ${{ env.WORKING_DIRECTORY }}
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
@@ -55,3 +52,4 @@ jobs:
           ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+

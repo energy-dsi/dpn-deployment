@@ -2,7 +2,7 @@
 #   GLOBAL WORKFLOW SETTINGS
 #╚════════════════════════════╝
 
-name: '🚀 CI-MESH-DPN-NETWORK'
+name: '🚀 CI-MESH-DPN-DEPLOYMENT'
 
 on:
   push:
@@ -10,12 +10,12 @@ on:
       - main
 
     paths:
-      - 'environment/sandbox/networking/**'
-      - '.github/workflows/CI-MESH-DPN-NETWORK.yml'
+      - 'environment/sandbox/dpn_deployment/**'
+      - '.github/workflows/CI-MESH-DPN.yml'
       - '.github/actions/**'
 
 env:
-  WORKING_DIRECTORY: 'environment/sandbox/networking'
+  WORKING_DIRECTORY: 'environment/sandbox/dpn_deployment'
 
 permissions:
   actions: write # This is required to read/write workflows, workflow runs and artifacts.
@@ -27,8 +27,8 @@ permissions:
 
 jobs:
 
-  terraform-plan-dpn-network:
-    name: Terraform DPN Network Sandbox Plan
+  terraform-plan-dpn:
+    name: Terraform DPN DPN Sandbox Plan
     runs-on: ubuntu-latest
     defaults:
       run:

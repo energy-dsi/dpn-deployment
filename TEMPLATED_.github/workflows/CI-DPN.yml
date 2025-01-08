@@ -2,7 +2,7 @@
 #   GLOBAL WORKFLOW SETTINGS
 #╚════════════════════════════╝
 
-name: '🚀 CI--DPN-DEPLOYMENT'
+name: '🚀 CI-DPN-DEPLOYMENT'
 
 on:
   push:

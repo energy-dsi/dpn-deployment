@@ -15,7 +15,7 @@ The cluster is integrated with Azure Monitor through a Log Analytics Workspace a
 - **Monitoring & Logging:** Integrated with Azure Monitor via Log Analytics Workspace and diagnostic settings.
 
 ## Module Outputs
-- All outputs are detailed in the [outputs.tf](./outputs.tf) file.
+- All outputs are detailed in the [outputs.tf](output.tf) file.
 
 ## Requirements
 - Terraform v0.12.x

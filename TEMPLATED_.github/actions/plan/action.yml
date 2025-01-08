@@ -17,9 +17,6 @@ inputs:
   ARM_SUBSCRIPTION_ID:
     description: "The Subscription ID of the project"
     required: true
-  SSH_PRIVATE_KEY:
-    description: "SSH Private Key"
-    required: true
 
 runs:
   using: "composite"
@@ -32,15 +29,6 @@ runs:
       uses: hashicorp/setup-terraform@v3
       with:
         terraform_version: "1.1.7"
-
-    - name: Setup SSH Key
-      shell: bash
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ inputs.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-        chmod 644 ~/.ssh/known_hosts
 
     - name: Terraform Init
       id: init

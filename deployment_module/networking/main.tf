@@ -11,7 +11,7 @@ resource "azurerm_resource_group" "log_analytics_resource_group" {
 }
 
 module "virtual_network" {
-  source = "git@github.com:energy-dsi/dpnModules.git//modules/networking?ref=main"
+  source = "../../azure_modules/networking"
   location = var.location
   tags = var.tags
   vnet_name = var.vnet_name
@@ -19,7 +19,7 @@ module "virtual_network" {
 }
 
 module "log_analytics" {
-  source = "git@github.com:energy-dsi/dpnModules.git//modules/loganalytics?ref=main"
+  source = "../../azure_modules/loganalytics"
   location = var.location
   log_analytics_resource_group_name = azurerm_resource_group.log_analytics_resource_group.name
   log_analytics_workspace_name = var.log_analytics_workspace_name

@@ -6,7 +6,7 @@ resource "azurerm_resource_group" "ia_resource_group" {
 
 
 module "ia_cosmos" {
-  source                            = "git@github.com:energy-dsi/dpnModules.git//modules/cosmos?ref=main"
+  source                            = "../../azure_modules/cosmos"
   name                              = var.cosmos_name
   resource_group_name               = azurerm_resource_group.ia_resource_group.name
   location                          = var.location
@@ -21,7 +21,7 @@ module "ia_cosmos" {
 }
 
 module "ia_eventhub" {
-  source                            = "git@github.com:energy-dsi/dpnModules.git//modules/eventhub?ref=main"
+  source                            = "../../azure_modules/eventhub"
   location                          = var.location
   name                              = var.eventhub_name
   resource_group_name               = azurerm_resource_group.ia_resource_group.name
@@ -35,7 +35,7 @@ module "ia_eventhub" {
 }
 
 module "ia_acr" {
-  source                            = "git@github.com:energy-dsi/dpnModules.git//modules/container_registry?ref=main"
+  source                            = "../../azure_modules/container_registry"
   acr_name                          = var.acr_name
   location                          = var.location
   log_analytics_resource_group_name = var.log_analytics_resource_group_name
@@ -58,7 +58,7 @@ resource "azurerm_role_assignment" "aks_role_assignment" {
 }
 
 module "ia_aks" {
-  source                            = "git@github.com:energy-dsi/dpnModules.git//modules/aks?ref=main"
+  source                            = "../../azure_modules/aks"
   aks_name                          = var.aks_name
   resource_group_name               = azurerm_resource_group.ia_resource_group.name
   location                          = var.location

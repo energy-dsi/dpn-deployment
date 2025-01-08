@@ -1,5 +1,5 @@
 module "ia_deployment_sandbox" {
-  source                            = "../../../module/dpn"
+  source                            = "../../../deployment_module/dpn"
   location                          = var.location
   ia_resource_group_name            = var.ia_resource_group_name
   tags                              = var.tags

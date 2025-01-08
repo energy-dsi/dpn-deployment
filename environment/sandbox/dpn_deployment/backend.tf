@@ -1,9 +1,9 @@
 terraform {
   backend "azurerm" {
-    resource_group_name  = "viral-rg"
-    storage_account_name = "vptfstorageaccount001"
-    container_name       = "tfstate"
-    key                  = "terraform_ia_deployment.tfstate"
+    resource_group_name  = ""
+    storage_account_name = ""
+    container_name       = ""
+    key                  = ""
   }
   required_providers {
     azurerm = {

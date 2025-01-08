@@ -30,5 +30,3 @@ The repository is structured as follows:
 - `environments`: Contains the Terraform configuration files for deploying the DPN infrastructure in different environments, such as sandbox, development, and production.
 - `TEMPLATED_.github`: Contains the GitHub Actions workflows for deploying the DPN infrastructure on Azure using Terraform. This will need to be renamed to `.github` **before use**.
 
-
-

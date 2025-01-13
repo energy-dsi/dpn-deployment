@@ -63,17 +63,17 @@ The module configures Azure Monitor through a Log Analytics Workspace:
 - Diagnostic Settings: Configures an azurerm_monitor_diagnostic_setting for comprehensive observability
 
 ## Inputs
-Variable Name | Type | Description                                         | Required | Default Value
---- | --- |-----------------------------------------------------|----------| ---
-`aks_name`| string| The name of the AKS cluster.                        | Yes      | N/A
-`resource_group_name` | string | Name of the existing resource group.                | Yes      | N/A
-`location` | string | Azure region for resource deployment.               | Yes      | N/A
-`vm_size` | string | The size of the VMs in the node pool.               | Yes      | Standard_DS2_v2
-`node_count` | number | The number of nodes in the node pool.               | Yes      | 3
-`aks_admin_group` | list(string) | List of Entra ID group object IDs for cluster admin. | Yes      | N/A
-`private_dns_zone_id` | string | Resource ID of the private DNS zone, e.g., /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-aks/providers/Microsoft.Network/privateDnsZones/privatelink.westus2.azmk8s.io.                   | Yes      | N/A
-`service_cidr` | string | CIDR block for the Kubernetes services | Yes      | N/A
-`dns_service_ip` | string | IP address for DNS resolution within the cluster | Yes      | N/A
-`tags` | map(string) | Tags to apply to all resources | Yes      | N/A
-`log_analytics_workspace_name` | string | Name of the Log Analytics workspace for monitoring and logging. | Yes      | N/A
-`log_analytics_workspace_resource_group` | string | ame of the resource group where the Log Analytics workspace is located. | Yes      | N/A
+| Variable Name                            | Type         | Description                                                                                                                                                                                     | Required | Default         |
+|------------------------------------------|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|-----------------|
+| `aks_name`                               | string       | The name of the AKS cluster.                                                                                                                                                                    | Yes      | N/A             |
+| `resource_group_name`                    | string       | Name of the existing resource group.                                                                                                                                                            | Yes      | N/A             |
+| `location`                               | string       | Azure region for resource deployment.                                                                                                                                                           | Yes      | N/A             |
+| `vm_size`                                | string       | The size of the VMs in the node pool.                                                                                                                                                           | Yes      | Standard_DS2_v2 |
+| `node_count`                             | number       | The number of nodes in the node pool.                                                                                                                                                           | Yes      | 3               |
+| `aks_admin_group`                        | list(string) | List of Entra ID group object IDs for cluster admin.                                                                                                                                            | Yes      | N/A             |
+| `private_dns_zone_id`                    | string       | Resource ID of the private DNS zone, e.g., /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-aks/providers/Microsoft.Network/privateDnsZones/privatelink.westus2.azmk8s.io. | Yes      | N/A             |
+| `service_cidr`                           | string       | CIDR block for the Kubernetes services                                                                                                                                                          | Yes      | N/A             |
+| `dns_service_ip`                         | string       | IP address for DNS resolution within the cluster                                                                                                                                                | Yes      | N/A             |
+| `tags`                                   | map(string)  | Tags to apply to all resources                                                                                                                                                                  | Yes      | N/A             |
+| `log_analytics_workspace_name`           | string       | Name of the Log Analytics workspace for monitoring and logging.                                                                                                                                 | Yes      | N/A             |
+| `log_analytics_workspace_resource_group` | string       | ame of the resource group where the Log Analytics workspace is located.                                                                                                                         | Yes      | N/A             |

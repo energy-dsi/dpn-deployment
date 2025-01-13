@@ -26,11 +26,11 @@ The registry is integrated with Azure Monitor through a Log Analytics Workspace.
 - Admin User: Admin user `false` by default.
 
 ## Inputs
-Variable Name | Type    | Description | Required | Default
---- |---------|-----------------------------------------------------|----------| ---
-`acr_name` | string  | The name of the Azure Container Registry. | Yes | N/A
-`resource_group_name` | string | Name of the existing resource group. | Yes | N/A
-`location` | string | Azure region for resource deployment. | Yes | `UK South`
-`log_analytics_workspace_name` | string | The name of the existing Log Analytics Workspace for diagnostics. | Yes | N/A
-`log_analytics_resource_group_name` | string | The name of the existing resource group for the Log Analytics Workspace. | Yes | N/A
-`tags` | map(string) | A map of tags to assign to the Azure Container Registry. | No | `{}`
+| Variable Name                       | Type        | Description                                                              | Required | Default    |
+|-------------------------------------|-------------|--------------------------------------------------------------------------|----------|------------|
+| `acr_name`                          | string      | The name of the Azure Container Registry.                                | Yes      | N/A        |
+| `resource_group_name`               | string      | Name of the existing resource group.                                     | Yes      | N/A        |
+| `location`                          | string      | Azure region for resource deployment.                                    | Yes      | `UK South` |
+| `log_analytics_workspace_name`      | string      | The name of the existing Log Analytics Workspace for diagnostics.        | Yes      | N/A        |
+| `log_analytics_resource_group_name` | string      | The name of the existing resource group for the Log Analytics Workspace. | Yes      | N/A        |
+| `tags`                              | map(string) | A map of tags to assign to the Azure Container Registry.                 | No       | `{}`       |

@@ -10,19 +10,14 @@ resource "azurerm_virtual_network" "vnet" {
   }
 
   subnet {
-    name             = "redis"
-    address_prefixes = ["10.0.3.0/24"]
-  }
-
-  subnet {
     name             = "cosmos"
-    address_prefixes = ["10.0.4.0/24"]
+    address_prefixes = ["10.0.3.0/24"]
 
   }
 
   subnet {
     name             = "eventhub"
-    address_prefixes = ["10.0.5.0/24"]
+    address_prefixes = ["10.0.4.0/24"]
   }
 
   tags = var.tags

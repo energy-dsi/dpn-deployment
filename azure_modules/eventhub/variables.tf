@@ -5,12 +5,12 @@ variable "location" {
 }
 
 variable "name" {
-  description = "The name of the CosmosDB account."
+  description = "The name of the EventHub account."
   type        = string
 }
 
 variable "resource_group_name" {
-  description = "The name of the resource group in which the CosmosDB account will be created."
+  description = "The name of the resource group in which the EventHub account will be created."
   type        = string
 }
 
@@ -20,7 +20,7 @@ variable "tags" {
 }
 
 variable "vnet_subnet_name" {
-  description = "The name of the subnet in which the CosmosDB account will be created."
+  description = "The name of the subnet in which the EventHub account will be created."
   type        = string
 }
 

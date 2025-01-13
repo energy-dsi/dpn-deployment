@@ -1,6 +1,6 @@
 # Cosmos DB
 
-### About
+## About
 
 ### Purpose
 This Terraform module deploys an Azure Cosmos DB account in an existing Azure Resource Group with best practices for security, networking, and monitoring. 

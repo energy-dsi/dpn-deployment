@@ -30,3 +30,10 @@ The repository is structured as follows:
 - `environments`: Contains the Terraform configuration files for deploying the DPN infrastructure in different environments, such as sandbox, development, and production.
 - `TEMPLATED_.github`: Contains the GitHub Actions workflows for deploying the DPN infrastructure on Azure using Terraform. This will need to be renamed to `.github` **before use**.
 
+## Prerequisites
+- As part of the deployment process, you will need to have the following prerequisites in place:
+  - An Azure subscription
+  - An Azure service principal with necessary permissions to add Role Assignments and create resources in the Azure subscription.
+  - Terraform 
+  - Azure CLI
+  - CIDR block for AKS Servie CIDR

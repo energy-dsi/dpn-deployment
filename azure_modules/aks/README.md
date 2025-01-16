@@ -33,8 +33,8 @@ The cluster is integrated with Azure Monitor through a Log Analytics Workspace a
 ## Networking Configuration
 This module configures the AKS cluster using Azure CNI with the following networking settings:
 - Network Plugin: Azure CNI with Calico network policy.
-- Subnet Requirement: The AKS cluster requires a pre-existing subnet that is not provisioned within the virtual network itself. The subnet must be created independently and passed as vnet_subnet_id in the module.
-- Service CIDR: The service_cidr defines the range of virtual IP addresses for Kubernetes services.
+- Subnet Requirement: The AKS cluster requires a pre-existing subnet.
+- Service CIDR: A CIDR block from which Kubernetes assigns virtual IPs to internal services within the cluster.
 - DNS Service IP: The dns_service_ip is used for DNS resolution within the cluster.
 
 ## Entra ID Integration (Azure AD)

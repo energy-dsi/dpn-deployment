@@ -13,13 +13,14 @@ resource "azurerm_cosmosdb_account" "mongo_instance" {
     location          = var.failover_location
   }
   #local_authentication_disabled = true
+  public_network_access_enabled = false
   mongo_server_version          = "7.0"
   tags                          = var.tags
 
 }
 
 resource "azurerm_monitor_diagnostic_setting" "cosmos_diagnostic" {
-  name = "${var.name}-diagnostic"
+  name                       = "${var.name}-diagnostic"
   target_resource_id         = azurerm_cosmosdb_account.mongo_instance.id
   log_analytics_workspace_id = data.azurerm_log_analytics_workspace.log_analytics.id
 
@@ -43,7 +44,7 @@ resource "azurerm_private_endpoint" "cosmos_endpoint" {
   subnet_id           = data.azurerm_subnet.aks_subnet.id
 
   private_service_connection {
-    name = "${var.name}-connection"
+    name                           = "${var.name}-connection"
     private_connection_resource_id = azurerm_cosmosdb_account.mongo_instance.id
     subresource_names              = ["MongoDB"]
     is_manual_connection           = false
@@ -54,5 +55,5 @@ resource "azurerm_private_endpoint" "cosmos_endpoint" {
     private_dns_zone_ids = [var.cosmosdb_private_dns_zone_id]
   }
 
-  tags       = var.tags
+  tags = var.tags
 }

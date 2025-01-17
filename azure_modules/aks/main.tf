@@ -3,7 +3,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   name                = var.aks_name
   resource_group_name = var.resource_group_name
   #dns_prefix_private_cluster = var.aks_name
-  dns_prefix =  var.aks_name
+  dns_prefix = var.aks_name
   #private_cluster_enabled    = local.sandbox_subscription == true ? var.aks_name : null
   #private_dns_zone_id        = var.private_dns_zone_id
 

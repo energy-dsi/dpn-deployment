@@ -37,7 +37,6 @@ resource "azurerm_monitor_diagnostic_setting" "cosmos_diagnostic" {
 
 
 resource "azurerm_private_endpoint" "cosmos_endpoint" {
-  #count               = local.sandbox_subscription == true ? 0 : 1
   name                = "${var.name}-endpoint"
   location            = var.location
   resource_group_name = var.resource_group_name

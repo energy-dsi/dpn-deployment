@@ -1,3 +1,6 @@
+### Disclaimer
+The software provided as part of this repository is intended for pilot purposes only. It is recommended to be deployed in a sandbox environment.
+
 # DPN-Deployment
 
 # DPN Terraform Modules

@@ -11,6 +11,7 @@ The modules are designed to deploy the pre-requisites for the DPN infrastructure
 - AKS Cluster
 - Azure Event Hub
 - Azure Cosmos DB
+- Azure Storage Account
 
 Other modules are also available for deploying the DPN infrastructure components, such as:
 - Azure Virtual Network

@@ -1,0 +1,63 @@
+name: "Terraform Apply"
+description: "Terraform Apply"
+
+inputs:
+  WORKING_DIRECTORY:
+    description: "Working Directory"
+    required: true
+  ARM_CLIENT_ID:
+    description: "The Application ID of the SPN"
+    required: true
+  ARM_CLIENT_SECRET:
+    description: "The Secret of the SPN"
+    required: true
+  ARM_TENANT_ID:
+    description: "The Tenant ID"
+    required: true
+  ARM_SUBSCRIPTION_ID:
+    description: "The Subscription ID of the project"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: Checkout Working Directory
+      uses: actions/checkout@v4
+
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: "1.1.7"
+
+    - name: Terraform Init
+      id: init
+      run:
+        terraform init
+        -var ARM_CLIENT_ID=$ARM_CLIENT_ID
+        -var ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
+        -var ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
+        -var ARM_TENANT_ID=$ARM_TENANT_ID
+      env:
+        ARM_CLIENT_ID: ${{ inputs.ARM_CLIENT_ID }}
+        ARM_CLIENT_SECRET: ${{ inputs.ARM_CLIENT_SECRET }}
+        ARM_SUBSCRIPTION_ID: ${{ inputs.ARM_SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ inputs.ARM_TENANT_ID }}
+      shell: bash
+      working-directory: ${{ inputs.WORKING_DIRECTORY }}
+
+    - name: Terraform Apply
+      id: apply
+      run: terraform apply -auto-approve
+        -var ARM_CLIENT_ID=$ARM_CLIENT_ID
+        -var ARM_CLIENT_SECRET=$ARM_CLIENT_SECRET
+        -var ARM_SUBSCRIPTION_ID=$ARM_SUBSCRIPTION_ID
+        -var ARM_TENANT_ID=$ARM_TENANT_ID
+        -input=false
+      shell: bash
+      working-directory: ${{ inputs.WORKING_DIRECTORY }}
+      env:
+        ARM_CLIENT_ID: ${{ inputs.ARM_CLIENT_ID }}
+        ARM_CLIENT_SECRET: ${{ inputs.ARM_CLIENT_SECRET }}
+        ARM_SUBSCRIPTION_ID: ${{ inputs.ARM_SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ inputs.ARM_TENANT_ID }}

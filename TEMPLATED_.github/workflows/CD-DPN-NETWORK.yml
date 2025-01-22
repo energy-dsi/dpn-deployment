@@ -1,0 +1,54 @@
+#╔════════════════════════════╗
+#   GLOBAL WORKFLOW SETTINGS
+#╚════════════════════════════╝
+
+name: '🚀 CD-DPN-NETWORK'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'environment/sandbox/networking/**'
+      - '.github/workflows/CD-DPN-NETWORK.yml'
+      - '.github/actions/**'
+
+env:
+  WORKING_DIRECTORY: 'environment/sandbox/networking'
+
+permissions:
+  actions: write # This is required to read/write workflows, workflow runs and artifacts.
+  contents: write # This is required for actions/checkout and to read/write repository contents, commits, branches, downloads, releases, and merges.
+  id-token: write # This is required for requesting the JWT for OIDC.
+  pull-requests: write # This is required to read/write pull requests and related comments, assignees, labels, milestones, and merges.
+  security-events: write # This is required for the Checkov composite action to upload report to the GitHub Advanced Security tab
+
+jobs:
+  terraform-apply-dpn-network:
+    name: Terraform DPN Network Sandbox Apply
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+    steps:
+      - name: Checkout Working Directory
+        uses: actions/checkout@v4
+
+      - name: Login with Azure CLI
+        id: azure-login
+        uses: azure/login@v1
+        with:
+          creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.ARM_TENANT_ID }}"}'
+
+      - name: Terraform Apply
+        id: terraform-apply-sandbox
+        uses: ./.github/actions/apply
+        with:
+          WORKING_DIRECTORY: ${{ env.WORKING_DIRECTORY }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+

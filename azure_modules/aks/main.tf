@@ -21,6 +21,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
   azure_policy_enabled             = true
   http_application_routing_enabled = false
   local_account_disabled           = true
+  oidc_issuer_enabled              = true
+  workload_identity_enabled        = true
 
   default_node_pool {
     name                    = "default"

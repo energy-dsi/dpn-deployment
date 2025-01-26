@@ -24,4 +24,5 @@ module "ia_deployment_sandbox" {
   account_replication_type          = var.account_replication_type
   account_tier                      = var.account_tier
   storage_account_name              = var.storage_account_name
+  helm_identity_name                = var.helm_identity_name
 }

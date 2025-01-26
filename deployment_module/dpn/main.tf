@@ -88,6 +88,38 @@ module "ia_aks" {
   vm_size                           = var.vm_size
 }
 
+# Managed Identity with ACR Push and Pull Role
+
+resource "azurerm_user_assigned_identity" "helm_identity" {
+  location            = var.location
+  name                = var.helm_identity_name
+  tags                = var.tags
+  resource_group_name = azurerm_resource_group.ia_resource_group.name
+}
+
+resource "azurerm_federated_identity_credential" "helm_identity_credential" {
+  name                = azurerm_user_assigned_identity.helm_identity.name
+  resource_group_name = azurerm_user_assigned_identity.helm_identity.resource_group_name
+  parent_id           = azurerm_user_assigned_identity.helm_identity.id
+  issuer              = module.ia_aks.aks.oidc_issuer_url
+  subject             = "system:serviceaccount:flux-system:source-controller"
+  audience            = ["api://AzureADTokenExchange"]
+}
+
+resource "azurerm_role_assignment" "helm_identity_acr_pull_role" {
+  scope                = module.ia_acr.acr_container_registry.id
+  role_definition_name = "AcrPull"
+  principal_id         = azurerm_user_assigned_identity.helm_identity.principal_id
+  depends_on           = [module.ia_acr]
+}
+
+resource "azurerm_role_assignment" "helm_identity_acr_push_role" {
+  scope                = module.ia_acr.acr_container_registry.id
+  role_definition_name = "AcrPush"
+  principal_id         = azurerm_user_assigned_identity.helm_identity.principal_id
+  depends_on           = [module.ia_acr]
+}
+
 resource "azurerm_eventhub" "knowledge" {
   name                = "knowledge"
   namespace_name      = module.ia_eventhub.eventhub_namespace.name

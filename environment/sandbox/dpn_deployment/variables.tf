@@ -138,3 +138,8 @@ variable "account_tier" {
   description = "The tier for the storage account"
   type        = string
 }
+
+variable "helm_identity_name" {
+  description = "The name of the identity to assign to the Helm service account"
+  type        = string
+}

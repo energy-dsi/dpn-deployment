@@ -7,13 +7,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
   #private_cluster_enabled    = local.sandbox_subscription == true ? var.aks_name : null
   #private_dns_zone_id        = var.private_dns_zone_id
 
-  service_mesh_profile {
-    mode      = "Istio"
-    revisions = ["asm-1-23"]
-  }
-
-
-
   identity {
     type = "SystemAssigned"
   }

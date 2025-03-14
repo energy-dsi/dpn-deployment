@@ -2,7 +2,7 @@ resource "azurerm_eventhub_namespace" "eventhub_kafka" {
   name                = var.name
   location            = var.location
   resource_group_name = var.resource_group_name
-  sku                 = "Standard"
+  sku                 = "Premium"
   #public_network_access_enabled = local.sandbox_subscription == true ? true : false
   public_network_access_enabled = false
   #local_authentication_enabled  = false
